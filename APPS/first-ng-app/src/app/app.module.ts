@@ -12,7 +12,10 @@ import { RouterModule, Routes } from "@angular/router";
 import { FooterComponent } from "./footer/footer.component";
 
 import { FormsModule } from "@angular/forms";
+import { FlashMessagesModule } from "angular2-flash-messages";
 import { CheckFormService } from "./checkForm.service";
+import { AdduserService } from "./adduser.service";
+import { HttpModule } from "@angular/http";
 
 import { from } from "rxjs";
 
@@ -35,9 +38,11 @@ const appRoute: Routes = [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(appRoute),
-    FormsModule
+    FormsModule,
+    HttpModule,
+    FlashMessagesModule.forRoot()
   ],
-  providers: [CheckFormService],
+  providers: [CheckFormService, AdduserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

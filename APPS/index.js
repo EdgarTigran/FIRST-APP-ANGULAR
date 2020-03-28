@@ -4,12 +4,14 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
 const config = require("./config/db");
-const Users = require("./models/user");
+// const Users = require("./models/user");
 const account = require("./routes/account");
 
 const app = express();
 
 const port = 3000;
+
+app.use(cors());
 
 app.use(bodyParser.json());
 

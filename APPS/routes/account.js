@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Users = require("../models/user");
-const config = require("../config/db");
 
 // router.get("/reg", (req, res) => {
 //   res.send("ADD user ej");

@@ -6,10 +6,16 @@ const path = require("path");
 const config = require("./config/db");
 // const Users = require("./models/user");
 const account = require("./routes/account");
+const passport = require("passport");
 
 const app = express();
 
 const port = 3000;
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+require("./config/passport")(passport);
 
 app.use(cors());
 
@@ -19,14 +25,14 @@ app.use(express.static(path.join(__dirname, "public")));
 
 mongoose.connect(config.db, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 mongoose.connection.on("connected", () => {
   console.log("We connected whit MongoDB");
 });
 
-mongoose.connection.on("error", err => {
+mongoose.connection.on("error", (err) => {
   console.log("MongoDB connection error:" + err);
 });
 

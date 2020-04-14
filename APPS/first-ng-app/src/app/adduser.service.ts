@@ -4,9 +4,9 @@ import { map } from "rxjs/operators";
 import { from } from "rxjs";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
-export class AdduserService {
+export class AddUserService {
   constructor(private http: Http) {}
 
   registerUser(user) {
@@ -14,6 +14,6 @@ export class AdduserService {
     headers.append("Content-Type", "aplication/json");
     return this.http
       .post("http://localhost:3000/account/reg", user, { headers: headers })
-      .pipe(map(res => res.json()));
+      .pipe(map((respons: any) => respons.json()));
   }
 }

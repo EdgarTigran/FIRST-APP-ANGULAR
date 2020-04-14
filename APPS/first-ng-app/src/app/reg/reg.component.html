@@ -2,6 +2,20 @@
 <form (submit)="addUserClick()">
   <input
     type="text"
+    [(ngModel)]="login"
+    name="login"
+    placeholder="Enter your login"
+    class="form-control"
+  /><br />
+  <input
+    type="password"
+    [(ngModel)]="password"
+    name="password"
+    placeholder="Enter your password"
+    class="form-control"
+  /><br />
+  <input
+    type="text"
     [(ngModel)]="firstname"
     name="first name"
     placeholder="Enter your first name"

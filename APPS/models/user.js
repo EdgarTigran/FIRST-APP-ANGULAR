@@ -1,31 +1,58 @@
 const mongoose = require("mongoose");
-// const config = require("../config/db");
+const config = require("../config/db");
+const bcrypt = require("bcryptjs");
 
-const UsersSchema = mongoose.Schema({
+const UserSchema = mongoose.Schema({
+  login: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
   firstname: {
     type: String,
-    required: true
+    required: true,
   },
   lastname: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
-    required: true
+    required: true,
   },
   age: {
     type: Number,
-    required: true
-  }
+    required: true,
+  },
 });
 
-const Users = (module.exports = mongoose.model("Users", UsersSchema));
+const User = (module.exports = mongoose.model("User", UserSchema));
 
-module.exports.getUserById = function(id, callback) {
+module.exports.getUserByLogin = function (login, callback) {
+  const query = { login: login };
+  User.findOne(query, callback);
+};
+
+module.exports.getUserById = function (id, callback) {
   Users.findById(id, callback);
 };
 
-module.exports.addUser = function(newUser, callback) {
-  newUser.save(callback);
+module.exports.addUser = function (newUser, callback) {
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      if (err) throw err;
+      newUser.password = hash;
+      newUser.save(callback);
+    });
+  });
+};
+
+module.exports.camparePass = function (passFromUser, useDBpass, callback) {
+  bcrypt.compare(passFromUser, useDBpass, (err, isMatch) => {
+    if (err) throw err;
+    callback(null, isMatch);
+  });
 };

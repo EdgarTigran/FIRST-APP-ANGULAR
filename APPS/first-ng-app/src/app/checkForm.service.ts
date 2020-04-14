@@ -4,6 +4,16 @@ import { Injectable } from "@angular/core";
 export class CheckFormService {
   constructor() {}
 
+  chackLogin(login) {
+    if (login == undefined) return false;
+    else return true;
+  }
+
+  chackPassword(password) {
+    if (password == undefined) return false;
+    else return true;
+  }
+
   chackFirstname(firstname) {
     if (firstname == undefined) return false;
     else return true;

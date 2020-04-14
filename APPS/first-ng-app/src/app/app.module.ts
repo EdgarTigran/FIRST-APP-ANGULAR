@@ -14,15 +14,17 @@ import { FooterComponent } from "./footer/footer.component";
 import { FormsModule } from "@angular/forms";
 import { FlashMessagesModule } from "angular2-flash-messages";
 import { CheckFormService } from "./checkForm.service";
-import { AdduserService } from "./adduser.service";
+import { AddUserService } from "./addUser.service";
 import { HttpModule } from "@angular/http";
+import { AuthComponent } from "./auth/auth.component";
 
 import { from } from "rxjs";
 
 const appRoute: Routes = [
   { path: "", component: HomeComponent },
   { path: "reg", component: RegComponent },
-  { path: "all", component: AllComponent }
+  { path: "auth", component: AuthComponent },
+  { path: "all", component: AllComponent },
 ];
 
 @NgModule({
@@ -32,7 +34,8 @@ const appRoute: Routes = [
     RegComponent,
     AllComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,9 +43,9 @@ const appRoute: Routes = [
     RouterModule.forRoot(appRoute),
     FormsModule,
     HttpModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
   ],
-  providers: [CheckFormService, AdduserService],
-  bootstrap: [AppComponent]
+  providers: [CheckFormService, AddUserService],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

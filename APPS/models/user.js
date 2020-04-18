@@ -40,13 +40,14 @@ module.exports.getUserById = function (id, callback) {
   Users.findById(id, callback);
 };
 
+const saltRounds = 10;
+const myPlaintextPassword = "newUser.password";
+
 module.exports.addUser = function (newUser, callback) {
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
-      if (err) throw err;
-      newUser.password = hash;
-      newUser.save(callback);
-    });
+  bcrypt.hash(myPlaintextPassword, saltRounds, function (err, hash) {
+    if (err) throw err;
+    newUser.password = hash;
+    newUser.save(callback);
   });
 };
 

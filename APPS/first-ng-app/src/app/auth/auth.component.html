@@ -1,3 +1,19 @@
-<p>
-  auth works!
-</p>
+<h1>User authentication form</h1>
+<form (submit)="userLoginClick()">
+  <input
+    type="text"
+    [(ngModel)]="login"
+    name="login"
+    placeholder="Enter your login"
+    class="form-control"
+  /><br />
+  <input
+    type="password"
+    [(ngModel)]="password"
+    name="password"
+    placeholder="Enter your password"
+    class="form-control"
+  /><br />
+
+  <button class="btn btn-success" type="submit">Anter user account</button>
+</form>

@@ -37,7 +37,7 @@ module.exports.getUserByLogin = function (login, callback) {
 };
 
 module.exports.getUserById = function (id, callback) {
-  Users.findById(id, callback);
+  User.findById(id, callback);
 };
 
 const saltRounds = 10;
